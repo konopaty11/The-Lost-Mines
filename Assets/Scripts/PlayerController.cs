@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     Vector2 _direction;
 
     public Transform Player => player;
+    public CharacterController Controller => characterController;
 
     InputSystem_Actions _inputActions;
 
     Transform _cameraTransform;
 
-    float _gravitationForce = 100f;
+    float _gravitationForce = 1000f;
 
     void Awake()
     {
@@ -90,6 +91,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
     }
 }

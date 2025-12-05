@@ -11,7 +11,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     public static UnityAction<Vector2> SetDirection;
 
     Vector2 _startPosition;
-    const float _maxDiration = 300f;
+    const float _maxDirañtion = 200f;
     Coroutine _returnCoroutine = null;
 
     void Start()
@@ -25,7 +25,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
             StopCoroutine(ReturnToStartPosition());
 
         Vector2 _direction = eventData.position - _startPosition;
-        float _lenght = Mathf.Min(_direction.magnitude, _maxDiration);
+        float _lenght = Mathf.Min(_direction.magnitude, _maxDirañtion);
 
         joystick.position = _startPosition + _lenght * _direction.normalized;
         SetDirection?.Invoke(_direction);

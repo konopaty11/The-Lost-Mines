@@ -31,6 +31,10 @@ public class MineController : MonoBehaviour
 
     public void TransitionInside()
     {
+        researchBtn.SetActive(false);
+
+        player.Controller.enabled = false;
         player.Player.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        player.Controller.enabled = true;
     }
 }
