@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     float _gravitationForce = 1000f;
 
+    List<Resource> _resources = new();
+    string _resourceTag = "Resource";
 
     void Awake()
     {
@@ -90,13 +92,31 @@ public class PlayerController : MonoBehaviour
 
     void Mine(InputAction.CallbackContext context)
     {
-        foreach (Resource _resource in trigger.Resources)
+        foreach (Resource _resource in _resources)
         {
-            Debug.Log(_resource);
             inventory.AddItem(_resource.Type);
             Destroy(_resource.gameObject);
         }
+
+        _resources = new();
     }
 
-    
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag(_resourceTag)) return;
+
+        Resource _resource = other.GetComponent<Resource>();
+        if (_resource != null)
+            _resources.Add(_resource);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag(_resourceTag)) return;
+
+        Resource _resource = other.GetComponent<Resource>();
+        if (_resource != null)
+            _resources.Remove(_resource);
+    }
 }
